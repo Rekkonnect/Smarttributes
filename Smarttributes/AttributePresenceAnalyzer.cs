@@ -1,44 +1,18 @@
 ﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using RoseLynn;
-using RoseLynn.CSharp.Syntax;
 using System.Collections.Immutable;
-using System.Diagnostics;
 
 namespace Smarttributes;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public class AttributePresenceAnalyzer : SmarttributesDiagnosticAnalyzer
+public class AttributePresenceAnalyzer : BaseAttributeAnalyzer
 {
-    public override void Initialize(AnalysisContext context)
+    protected override void AnalyzeAttributedSymbol(AttributeSyntaxNodeAnalysisContext attributeContext)
     {
-        context.EnableConcurrentExecution();
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.ReportDiagnostics);
+        var (context, _, _, declaredSymbol) = attributeContext;
 
-        RegisterNodeActions(context);
-    }
-
-    private void RegisterNodeActions(AnalysisContext context)
-    {
-        context.RegisterSyntaxNodeAction(AnalyzeAttributedSymbol, SyntaxKind.Attribute);
-    }
-
-    private void AnalyzeAttributedSymbol(SyntaxNodeAnalysisContext context)
-    {
-        if (context.Node is not AttributeSyntax attributeNode)
-        {
-            Debug.Fail("Visited not an attribute node");
-            return;
-        }
-
-        var attributedNode = attributeNode.GetAttributeDeclarationParent();
-        var declaredSymbol = context.SemanticModel.GetDeclaredSymbol(attributedNode);
-        if (declaredSymbol is null)
-            return;
-
-        var declaredSymbolAttributes = declaredSymbol.GetAttributes();
+        var declaredSymbolAttributes = declaredSymbol!.GetAttributes();
 
         var missingAttributes = new List<ITypeSymbol>();
 
@@ -58,8 +32,7 @@ public class AttributePresenceAnalyzer : SmarttributesDiagnosticAnalyzer
             {
                 foreach (var type in attributePresenceAttribute.Types)
                 {
-                    bool containsRequiredAttribute = declaredSymbolAttributes
-                        .Any(a => type.Equals(a.AttributeClass, SymbolEqualityComparer.Default));
+                    bool containsRequiredAttribute = ImmutableArrayExtensions.Any(declaredSymbolAttributes, a => type.Equals(a.AttributeClass, SymbolEqualityComparer.Default));
 
                     if (!containsRequiredAttribute)
                     {
@@ -84,6 +57,7 @@ public class AttributePresenceAnalyzer : SmarttributesDiagnosticAnalyzer
     }
 
     private sealed record RequiresPresenceAttributeData(AttributeData Attribute, ImmutableArray<ITypeSymbol> Types)
+        : CustomAttributeData(Attribute)
     {
         public static ImmutableArray<RequiresPresenceAttributeData> ParseRange(ImmutableArray<AttributeData> attributes)
         {

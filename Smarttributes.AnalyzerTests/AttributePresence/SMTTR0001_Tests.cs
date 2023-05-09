@@ -1,6 +1,4 @@
-﻿using Smarttributes.Constraints;
-
-namespace Smarttributes.AnalyzerTests.AttributePresence;
+﻿namespace Smarttributes.AnalyzerTests.AttributePresence;
 
 public sealed class SMTTR0001_Tests : AttributePresenceAnalyzerDiagnosticTests
 {

@@ -77,5 +77,41 @@ namespace Smarttributes {
                 return ResourceManager.GetString("SMTTR0001_Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The attribute &apos;{0}&apos; requires that the attribute &apos;{1}&apos; can be placed on the following targets: {2}.
+        /// </summary>
+        internal static string SMTTR0002_MessageFormat {
+            get {
+                return ResourceManager.GetString("SMTTR0002_MessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The attribute&apos;s presence requires that it can be placed on specific attribute types.
+        /// </summary>
+        internal static string SMTTR0002_Title {
+            get {
+                return ResourceManager.GetString("SMTTR0002_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The attribute &apos;{0}&apos; can only be applied to functions of kind: &apos;{1}&apos;.
+        /// </summary>
+        internal static string SMTTR0005_MessageFormat {
+            get {
+                return ResourceManager.GetString("SMTTR0005_MessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The attribute can only be placed on functions of certain kinds.
+        /// </summary>
+        internal static string SMTTR0005_Title {
+            get {
+                return ResourceManager.GetString("SMTTR0005_Title", resourceCulture);
+            }
+        }
     }
 }

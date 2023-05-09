@@ -123,4 +123,16 @@
   <data name="SMTTR0001_Title" xml:space="preserve">
     <value>The attribute's presence requires that other attributes are also present</value>
   </data>
+  <data name="SMTTR0002_MessageFormat" xml:space="preserve">
+    <value>The attribute '{0}' requires that the attribute '{1}' can be placed on the following targets: {2}</value>
+  </data>
+  <data name="SMTTR0002_Title" xml:space="preserve">
+    <value>The attribute's presence requires that it can be placed on specific attribute types</value>
+  </data>
+  <data name="SMTTR0005_MessageFormat" xml:space="preserve">
+    <value>The attribute '{0}' can only be applied to functions of kind: '{1}'</value>
+  </data>
+  <data name="SMTTR0005_Title" xml:space="preserve">
+    <value>The attribute can only be placed on functions of certain kinds</value>
+  </data>
 </root>

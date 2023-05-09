@@ -8,7 +8,7 @@ public sealed class SmarttributesDiagnosicDescriptorStorage : DiagnosticDescript
 {
     public static readonly SmarttributesDiagnosicDescriptorStorage Instance = new();
 
-    protected override string BaseRuleDocsURI => "https://github.com/Rekkonnect/Smarttributes/blob/master/docs/rules";
+    protected override string BaseRuleDocsURI => "https://github.com/Rekkonnect/Smarttributes/blob/main/docs/rules";
     protected override string DiagnosticIDPrefix => "SMTTR";
     protected override ResourceManager ResourceManager => DiagnosticResources.ResourceManager;
 
@@ -23,9 +23,17 @@ public sealed class SmarttributesDiagnosicDescriptorStorage : DiagnosticDescript
     #region Rules
     private SmarttributesDiagnosicDescriptorStorage()
     {
-        SetDefaultDiagnosticAnalyzer<AttributePresenceAnalyzer>();
+        // Looks fancy, doesn't it?
 
-        CreateDiagnosticDescriptor(0001, APIRestrictionsCategory, DiagnosticSeverity.Error);
+        SetDefaultDiagnosticAnalyzer<AttributePresenceAnalyzer>();
+        {
+            CreateDiagnosticDescriptor(0001, APIRestrictionsCategory, DiagnosticSeverity.Error);
+        }
+
+        SetDefaultDiagnosticAnalyzer<RestrictFunctionsAnalyzer>();
+        {
+            CreateDiagnosticDescriptor(0005, APIRestrictionsCategory, DiagnosticSeverity.Error);
+        }
     }
     #endregion
 }
