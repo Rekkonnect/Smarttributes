@@ -1,6 +1,6 @@
 ﻿namespace Smarttributes.AnalyzerTests.AttributePresence;
 
-public sealed class SMTTR0005_Tests : RequiredFunctionsAnalyzerDiagnosticTests
+public sealed class SMTTR0005_Tests : RestrictFunctionsAnalyzerDiagnosticTests
 {
     [Test]
     public void RestrictedFunctionKinds()

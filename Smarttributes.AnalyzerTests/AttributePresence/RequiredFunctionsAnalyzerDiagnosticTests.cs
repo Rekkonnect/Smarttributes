@@ -1,5 +1,5 @@
 ﻿namespace Smarttributes.AnalyzerTests.AttributePresence;
 
-public abstract class RequiredFunctionsAnalyzerDiagnosticTests : BaseSmarttributesDiagnosticTests<RestrictFunctionsAnalyzer>
+public abstract class RestrictFunctionsAnalyzerDiagnosticTests : BaseSmarttributesDiagnosticTests<RestrictFunctionsAnalyzer>
 {
 }
