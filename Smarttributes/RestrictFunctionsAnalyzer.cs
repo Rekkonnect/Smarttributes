@@ -12,34 +12,31 @@ public class RestrictFunctionsAnalyzer : BaseAttributeAnalyzer
 {
     protected override void AnalyzeAttributedSymbol(AttributeSyntaxNodeAnalysisContext attributeContext)
     {
-        var (context, _, _, declaredSymbol) = attributeContext;
+        var (context, attributeNode, _, declaredSymbol) = attributeContext;
 
         if (declaredSymbol is not IMethodSymbol declaredMethod)
             return;
 
-        var declaredSymbolAttributes = declaredSymbol!.GetAttributes();
+        var declaredSymbolAttribute = attributeNode.GetAttributeDataEx(context.SemanticModel);
 
-        foreach (var declaredSymbolAttribute in declaredSymbolAttributes)
-        {
-            var declaredSymbolAttributeClass = declaredSymbolAttribute.AttributeClass;
-            if (declaredSymbolAttributeClass is null)
-                continue;
+        var declaredSymbolAttributeClass = declaredSymbolAttribute?.AttributeClass;
+        if (declaredSymbolAttributeClass is null)
+            return;
 
-            var restrictFunctionsAttribute = GetRestrictFunctionsAttribute(declaredSymbolAttributeClass);
-            if (restrictFunctionsAttribute is null)
-                continue;
+        var restrictFunctionsAttribute = GetRestrictFunctionsAttribute(declaredSymbolAttributeClass);
+        if (restrictFunctionsAttribute is null)
+            return;
 
-            var targets = restrictFunctionsAttribute.FunctionTargets;
-            bool matches = MethodMathcesFunctionTargets(declaredMethod, targets);
-            if (matches)
-                continue;
+        var targets = restrictFunctionsAttribute.FunctionTargets;
+        bool matches = MethodMathcesFunctionTargets(declaredMethod, targets);
+        if (matches)
+            return;
 
-            var diagnostic = Diagnostics.CreateSMTTR0005(
-                declaredSymbolAttribute,
-                restrictFunctionsAttribute.FunctionTargets);
+        var diagnostic = Diagnostics.CreateSMTTR0005(
+            declaredSymbolAttribute!, // Erroneously reported CS8604
+            restrictFunctionsAttribute.FunctionTargets);
 
-            context.ReportDiagnostic(diagnostic);
-        }
+        context.ReportDiagnostic(diagnostic);
     }
 
     private static bool MethodMathcesFunctionTargets(IMethodSymbol symbol, FunctionTargets targets)
