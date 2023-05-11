@@ -1,17 +1,34 @@
 ﻿namespace Smarttributes.Constraints;
 
-[AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
+/// <summary>
+/// Denotes that the marked attribute imposes a requirement on the attributed symbol
+/// about the presence of other defined attributes.
+/// <br/>
+/// For example, consider the attribute A that has a RequiresPresence with the attributes
+/// B and C, that are both attributes. If a type T is applied the attribute A,
+/// it is then required that T is also applied the attributes B and C.
+/// </summary>
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 public class RequiresPresenceAttribute : Attribute
 {
     public virtual Type[] Types { get; }
 
+    /// <inheritdoc cref="RequiresPresenceAttribute"/>
+    /// <param name="types">
+    /// The attribute types that are required to be present on the target attributed symbol.
+    /// </param>
+    /// <remarks>
+    /// <i>Open generic attribute types are not supported.</i>
+    /// </remarks>
     public RequiresPresenceAttribute(params Type[] types)
     {
         Types = types;
     }
 }
 
-[AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
+/// <inheritdoc cref="RequiresPresenceAttribute"/>
+/// <typeparam name="T">The attribute type that is required to be present.</typeparam>
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 public sealed class RequiresPresenceAttribute<T> : RequiresPresenceAttribute
     where T : Attribute
 {
@@ -20,7 +37,8 @@ public sealed class RequiresPresenceAttribute<T> : RequiresPresenceAttribute
     public override Type[] Types => types;
 }
 
-[AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
+/// <inheritdoc cref="RequiresPresenceAttribute"/>
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 public sealed class RequiresPresenceAttribute<T1, T2> : RequiresPresenceAttribute
     where T1 : Attribute
     where T2 : Attribute
@@ -30,7 +48,8 @@ public sealed class RequiresPresenceAttribute<T1, T2> : RequiresPresenceAttribut
     public override Type[] Types => types;
 }
 
-[AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
+/// <inheritdoc cref="RequiresPresenceAttribute"/>
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 public sealed class RequiresPresenceAttribute<T1, T2, T3> : RequiresPresenceAttribute
     where T1 : Attribute
     where T2 : Attribute
@@ -41,7 +60,8 @@ public sealed class RequiresPresenceAttribute<T1, T2, T3> : RequiresPresenceAttr
     public override Type[] Types => types;
 }
 
-[AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
+/// <inheritdoc cref="RequiresPresenceAttribute"/>
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 public sealed class RequiresPresenceAttribute<T1, T2, T3, T4> : RequiresPresenceAttribute
     where T1 : Attribute
     where T2 : Attribute

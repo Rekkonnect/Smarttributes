@@ -1,5 +1,8 @@
 ﻿namespace Smarttributes.Constraints;
 
+/// <summary>
+/// Specifies the comparison type against the restriction values.
+/// </summary>
 public enum RestrictionKind
 {
     /// <summary>
