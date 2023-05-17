@@ -135,4 +135,16 @@
   <data name="SMTTR0005_Title" xml:space="preserve">
     <value>The attribute can only be placed on functions of certain kinds</value>
   </data>
+  <data name="SMTTR0010_MessageFormat" xml:space="preserve">
+    <value>This array argument must contain an equal number of objects matching the number of parameters in the method</value>
+  </data>
+  <data name="SMTTR0010_Title" xml:space="preserve">
+    <value>Provided argument count mismatch</value>
+  </data>
+  <data name="SMTTR0011_MessageFormat" xml:space="preserve">
+    <value>This array argument must contain objects matching the types of the parameters in the method in the order they appear</value>
+  </data>
+  <data name="SMTTR0011_Title" xml:space="preserve">
+    <value>Provided argument type mismatch</value>
+  </data>
 </root>

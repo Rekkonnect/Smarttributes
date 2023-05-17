@@ -16,3 +16,25 @@
 /// </summary>
 [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]
 public sealed class ParameterTypeMatchAttribute : Attribute { }
+
+#if DEBUG
+// POC
+
+// Generate an example using the above attribute
+
+// It should include a declaration of an attribute using the above attribute
+// and also define a method that uses the attribute
+// Base this example on the example from the documentation of the above attribute
+
+public sealed class ParameterTypeMatchAttributeExample : Attribute
+{
+    public ParameterTypeMatchAttributeExample([ParameterTypeMatch] object[] parameters) { }
+}
+
+public class MethodExampleClass
+{
+    [ParameterTypeMatchAttributeExample(new object[] { 1, "hello", false })]
+    public void MethodExample(int a, string b, bool c) { }
+}
+
+#endif

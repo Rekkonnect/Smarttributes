@@ -34,6 +34,12 @@ public sealed class SmarttributesDiagnosicDescriptorStorage : DiagnosticDescript
         {
             CreateDiagnosticDescriptor(0005, APIRestrictionsCategory, DiagnosticSeverity.Error);
         }
+
+        SetDefaultDiagnosticAnalyzer<ParameterTypeMatchAnalyzer>();
+        {
+            CreateDiagnosticDescriptor(0010, APIRestrictionsCategory, DiagnosticSeverity.Error);
+            CreateDiagnosticDescriptor(0011, APIRestrictionsCategory, DiagnosticSeverity.Error);
+        }
     }
     #endregion
 }

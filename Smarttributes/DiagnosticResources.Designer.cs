@@ -113,5 +113,41 @@ namespace Smarttributes {
                 return ResourceManager.GetString("SMTTR0005_Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This array argument must contain an equal number of objects matching the number of parameters in the method.
+        /// </summary>
+        internal static string SMTTR0010_MessageFormat {
+            get {
+                return ResourceManager.GetString("SMTTR0010_MessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provided argument count mismatch.
+        /// </summary>
+        internal static string SMTTR0010_Title {
+            get {
+                return ResourceManager.GetString("SMTTR0010_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This array argument must contain objects matching the types of the parameters in the method in the order they appear.
+        /// </summary>
+        internal static string SMTTR0011_MessageFormat {
+            get {
+                return ResourceManager.GetString("SMTTR0011_MessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provided argument type mismatch.
+        /// </summary>
+        internal static string SMTTR0011_Title {
+            get {
+                return ResourceManager.GetString("SMTTR0011_Title", resourceCulture);
+            }
+        }
     }
 }
